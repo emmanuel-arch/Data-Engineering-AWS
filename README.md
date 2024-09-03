@@ -1,4 +1,4 @@
-Data Engineering on AWS Masterclass
+# Data Engineering on AWS Masterclass
 
 The primary objective of this Masterclass is to enhance data engineering skills essential for powering an analytics workload on the AWS Cloud platform. For data scientists, understanding the backend processes that drive data-driven decisions is crucial. 
 ### Learning Objectives
