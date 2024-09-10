@@ -1,7 +1,7 @@
-#Data Engineering Masterclass on AWS
+Data Engineering Masterclass on AWS
 This project is designed to enhance my data engineering skills by building and deploying a scalable data pipeline on AWS. It focuses on ingesting, staging, storing, and visualizing data efficiently. Understanding how these backend processes work is vital for data scientists, as it enables better insights from analytics workloads on the cloud.
 
-##Learning Objectives
+Learning Objectives
 The following core objectives will guide this project:
 
 Data Pipeline Architecture: Create a visual representation of the entire data pipeline using draw.io, providing a clear view of the flow of data from ingestion to visualization.
@@ -9,17 +9,17 @@ Data Ingestion from APIs: Utilize AWS Lambda for serverless data extraction from
 Efficient Data Staging: Use AWS Simple Storage Service (S3) as an intermediary for staging ingested data.
 Data Storage in AWS RDS: Establish a simple Postgres-based data warehouse using AWS RDS to enable efficient querying and storage of data.
 Data Visualization: Use draw.io to visualize the data pipeline, showcasing how data is processed from source to insights.
-##Overview of the Data Pipeline
-###Architecture Overview
+Overview of the Data Pipeline
+Architecture Overview
 The data pipeline consists of several AWS services working in tandem to extract, stage, store, and process data in near real-time:
 
 AWS Lambda for executing Python scripts that ingest data from APIs.
 AWS S3 for staging raw data before further processing.
 AWS RDS (Postgres) to act as the data warehouse for structured storage.
 Draw.io to visualize the pipeline architecture.
-##Data Ingestion Workflow
-###Step 1: AWS Lambda for Serverless Data Extraction
-This project uses AWS Lambda to read exchange data from the Rick and Morty API. AWS Lambda is an excellent serverless compute service ideal for this use case due to its scalability and cost-efficiency. Here's how the Lambda function is set up:
+Data Ingestion Workflow
+Step 1: AWS Lambda for Serverless Data Extraction
+This project uses AWS Lambda to read exchange data from the CoinCap API. AWS Lambda is an excellent serverless compute service ideal for this use case due to its scalability and cost-efficiency. Here's how the Lambda function is set up:
 
 Lambda Setup:
 
@@ -35,13 +35,13 @@ In the function, scroll to Layers and click Add a Layer.
 Choose AWS Layers and select AWSSDKPandas-Python311.
 Data Extraction Script:
 
-The extraction.py script handles the data extraction process, pulling data from the Rick and Morty API.
+The extraction.py script handles the data extraction process, pulling data from the CoinCap API.
 The s3_file_operations.py script, found under the utils folder, writes the extracted data to your S3 bucket.
 Lambda Configuration:
 
 Increase the function timeout to 15 minutes under the Configuration section.
 Attach the AmazonS3FullAccess policy to Lambda's execution role to enable access to S3.
-###Step 2: Creating an S3 Bucket for Data Staging
+Step 2: Creating an S3 Bucket for Data Staging
 Data from AWS Lambda will be staged in an S3 bucket before loading it into the data warehouse. Here's how to set it up:
 
 AWS S3 Setup:
@@ -59,8 +59,8 @@ Testing the Setup:
 
 Invoke your Lambda function via the TEST button in the AWS Lambda console and check the output logs.
 Verify that the dataset has been saved to your S3 bucket.
-##Data Warehousing in AWS RDS (Postgres)
-###Step 3: Setting Up a Postgres Database in AWS RDS
+Data Warehousing in AWS RDS (Postgres)
+Step 3: Setting Up a Postgres Database in AWS RDS
 After the data is ingested and staged in S3, the next step is to store it in a Postgres database hosted on AWS RDS. This will act as a basic data warehouse where you can query and manipulate the data.
 
 RDS Setup:
@@ -75,15 +75,15 @@ Update the function’s environment variables to include the RDS connection stri
 Querying the Data:
 
 Once the data is loaded into RDS, you can run SQL queries using AWS DataGrip or pgAdmin to ensure the data has been correctly inserted.
-##Data Pipeline Visualization Using Draw.io
-###Step 4: Visualizing the Data Pipeline Architecture
+Data Pipeline Visualization Using Draw.io
+Step 4: Visualizing the Data Pipeline Architecture
 Now that the data has been ingested, staged, and stored, it's time to create a visual representation of the entire pipeline using draw.io. This final step ties everything together and helps you visualize the flow of data from extraction to warehousing.
 
 Architecture Diagram:
 
 Use draw.io to create an end-to-end architecture diagram.
 The diagram should include the following elements:
-Rick and Morty API (data source)
+CoinCap API (data source)
 AWS Lambda (for serverless data ingestion)
 AWS S3 (for data staging)
 AWS RDS (Postgres) (for data storage)
@@ -93,8 +93,7 @@ Refining the Diagram:
 Use color codes and annotations to highlight key components.
 Include a legend to clarify the role of each AWS service and data flow.
 Export the diagram as an image or PDF for documentation purposes.
-##Conclusion
+Conclusion
 This Data Engineering Masterclass on AWS has significantly enhanced my skills in building scalable, serverless data pipelines. I have gained hands-on experience with AWS Lambda, S3, and RDS, as well as the ability to visualize complex data architectures using draw.io. These skills are invaluable for building robust and efficient data-driven solutions, further enriching my data science career.
 
 By completing this project, I am now equipped to design, implement, and maintain sophisticated data pipelines that can handle real-time data ingestion, processing, and visualization.
-
