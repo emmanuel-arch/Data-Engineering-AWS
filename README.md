@@ -1,70 +1,100 @@
-# Data Engineering on AWS Masterclass
+#Data Engineering Masterclass on AWS
+This project is designed to enhance my data engineering skills by building and deploying a scalable data pipeline on AWS. It focuses on ingesting, staging, storing, and visualizing data efficiently. Understanding how these backend processes work is vital for data scientists, as it enables better insights from analytics workloads on the cloud.
 
-The primary objective of this Masterclass is to help me enhance my data engineering skills essential for powering an analytics workload on the AWS Cloud platform. This is because for data scientists, understanding the backend processes that drive data-driven decisions is crucial. 
-### Learning Objectives
+##Learning Objectives
+The following core objectives will guide this project:
 
-1. Creating a comprehensive architecture diagram to visualize the entire data pipeline.
-2. Ingesting data from REST APIs using AWS Lambda, a serverless compute service ideal for lightweight data extraction.
-3. Staging data efficiently with AWS Simple Storage Service (S3) to ensure seamless data flow.
-4. Building a simple, yet robust, Postgres data warehouse using AWS RDS to store and query data.
-5. Visualizing data using open-source tools like draw.io, transforming raw data into actionable insights.
+Data Pipeline Architecture: Create a visual representation of the entire data pipeline using draw.io, providing a clear view of the flow of data from ingestion to visualization.
+Data Ingestion from APIs: Utilize AWS Lambda for serverless data extraction from REST APIs, ideal for lightweight compute tasks.
+Efficient Data Staging: Use AWS Simple Storage Service (S3) as an intermediary for staging ingested data.
+Data Storage in AWS RDS: Establish a simple Postgres-based data warehouse using AWS RDS to enable efficient querying and storage of data.
+Data Visualization: Use draw.io to visualize the data pipeline, showcasing how data is processed from source to insights.
+##Overview of the Data Pipeline
+###Architecture Overview
+The data pipeline consists of several AWS services working in tandem to extract, stage, store, and process data in near real-time:
 
-### Workload Requirements
+AWS Lambda for executing Python scripts that ingest data from APIs.
+AWS S3 for staging raw data before further processing.
+AWS RDS (Postgres) to act as the data warehouse for structured storage.
+Draw.io to visualize the pipeline architecture.
+##Data Ingestion Workflow
+###Step 1: AWS Lambda for Serverless Data Extraction
+This project uses AWS Lambda to read exchange data from the Rick and Morty API. AWS Lambda is an excellent serverless compute service ideal for this use case due to its scalability and cost-efficiency. Here's how the Lambda function is set up:
 
-1. **Near Real-Time Data Ingestion**: Lightweight compute resources are necessary to run Python scripts for data ingestion. AWS Lambda, with its serverless architecture, is perfectly suited for this task.
-2. **Data Staging**: AWS S3 will be used as the staging area for storing ingested data before further processing.
-3. **Data Warehousing**: Extracted data will be loaded into a Postgres SQL database using AWS Lambda, simulating a data warehouse environment.
-4. **Data Visualization**: The staged and processed data will be visualized to derive insights, using tools such as AWS QuickSight or equivalent.
+Lambda Setup:
 
----
+Navigate to the AWS Management Console and select the Lambda service in the Ireland Region (eu-west-1).
+Create a new Lambda function:
+Runtime: Python 3.11
+Architecture: x86_64
+Execution Role: Create a new role with basic Lambda permissions.
+Adding Required Libraries:
 
-# Data Ingestion
+To use external libraries like Pandas, add a layer to your Lambda function:
+In the function, scroll to Layers and click Add a Layer.
+Choose AWS Layers and select AWSSDKPandas-Python311.
+Data Extraction Script:
 
-### A. Working with AWS Lambda
+The extraction.py script handles the data extraction process, pulling data from the Rick and Morty API.
+The s3_file_operations.py script, found under the utils folder, writes the extracted data to your S3 bucket.
+Lambda Configuration:
 
-In this section, I'll read exchange data from the CoinCap API, leveraging AWS Lambda for serverless computing—a crucial skill in the toolkit of any data scientist looking to build scalable data solutions.
+Increase the function timeout to 15 minutes under the Configuration section.
+Attach the AmazonS3FullAccess policy to Lambda's execution role to enable access to S3.
+###Step 2: Creating an S3 Bucket for Data Staging
+Data from AWS Lambda will be staged in an S3 bucket before loading it into the data warehouse. Here's how to set it up:
 
-1. **AWS Lambda Setup**:
-    - Navigate to the AWS Management Console and select the AWS Lambda service. Ensure you are in the ***Ireland Region (eu-west-1)***.
-    - Create a new Lambda function using the following specifications:
-        - **Runtime**: Python 3.11
-        - **Architecture**: x86_64
-        - **Execution Role**: Create a new role with basic Lambda permissions.
+AWS S3 Setup:
 
-2. **Adding Python Libraries**:
-    - To use libraries like Pandas for data manipulation, add a layer to the Lambda function:
-        - Scroll to the layers section, click on **Add a Layer**.
-        - Choose **AWS Layer**, then select **AWSSDKPandas-Python311** and the latest version.
+Create an S3 bucket with a unique name (e.g., de-masterclass-XX) where XX represents your initials.
+Enable the following settings:
+Disable ACLs (Access Control Lists).
+Turn off Block all Public Access (use with caution).
+Enable bucket versioning.
+Set encryption to Server-Side Encryption (SSE-S3) with Amazon S3 managed keys.
+Folder Structure:
 
-3. **Data Extraction Script**:
-    - Paste the script from `extraction.py` under the `lambda_code` folder in this repository. This script handles data extraction from the CoinCap API.
-    - Create a new Python file named `s3_file_operations.py` in the Lambda project folder. This script, found under the `utils` folder, assists in writing data to an S3 bucket.
+Within your S3 bucket, create a folder named exchanges to store the ingested data.
+Testing the Setup:
 
-4. **Lambda Configuration**:
-    - Increase the timeout limit by navigating to the ***Configuration*** section, setting it to **15 minutes**, and saving the changes.
-    - Grant Lambda permissions to access AWS S3 by attaching the ***AmazonS3FullAccess*** policy to the execution role.
+Invoke your Lambda function via the TEST button in the AWS Lambda console and check the output logs.
+Verify that the dataset has been saved to your S3 bucket.
+##Data Warehousing in AWS RDS (Postgres)
+###Step 3: Setting Up a Postgres Database in AWS RDS
+After the data is ingested and staged in S3, the next step is to store it in a Postgres database hosted on AWS RDS. This will act as a basic data warehouse where you can query and manipulate the data.
 
-### B. Creating an S3 Bucket
+RDS Setup:
 
-1. **AWS S3 Setup**:
-    - In the AWS Management Console, search for S3 and create a new bucket with a unique name, e.g., ***de-masterclass-XX*** (where XX are your initials).
-    - Adjust settings as follows:
-        - Disable ACLs (Access Control Lists).
-        - Turn off ***Block all Public Access*** (Not Recommended, but may be necessary).
-        - Enable versioning.
-        - Set encryption to ***Server-side encryption with Amazon S3 managed keys (SSE-S3)***.
-        - Enable the Bucket Key.
+In the AWS Management Console, navigate to RDS and create a Postgres instance.
+Choose a t3.micro instance for cost efficiency, and configure it to use a Multi-AZ deployment for availability.
+Set up security groups to allow your Lambda function to communicate with the RDS instance.
+Loading Data into RDS:
 
-2. **Folder Structure**:
-    - Inside your S3 bucket, create a folder named `exchanges`.
+Create a Lambda function that extracts data from S3 and inserts it into your Postgres database.
+Update the function’s environment variables to include the RDS connection string.
+Querying the Data:
 
-3. **Testing the Setup**:
-    - Invoke your Lambda function using the TEST button and review the output logs for any errors.
-    - Verify that the dataset is successfully saved in your S3 bucket.
+Once the data is loaded into RDS, you can run SQL queries using AWS DataGrip or pgAdmin to ensure the data has been correctly inserted.
+##Data Pipeline Visualization Using Draw.io
+###Step 4: Visualizing the Data Pipeline Architecture
+Now that the data has been ingested, staged, and stored, it's time to create a visual representation of the entire pipeline using draw.io. This final step ties everything together and helps you visualize the flow of data from extraction to warehousing.
 
----
+Architecture Diagram:
 
-This project not only deepens my understanding of AWS services but also enhances my data engineering capabilities—skills that are invaluable in your data science career. This masterclass made me well-equipped to design and implement efficient data pipelines that can process and analyze data in real-time, making me a more versatile and effective data scientist.
+Use draw.io to create an end-to-end architecture diagram.
+The diagram should include the following elements:
+Rick and Morty API (data source)
+AWS Lambda (for serverless data ingestion)
+AWS S3 (for data staging)
+AWS RDS (Postgres) (for data storage)
+Add arrows to represent the data flow between components, ensuring a clear and intuitive visualization of the pipeline.
+Refining the Diagram:
 
----
+Use color codes and annotations to highlight key components.
+Include a legend to clarify the role of each AWS service and data flow.
+Export the diagram as an image or PDF for documentation purposes.
+##Conclusion
+This Data Engineering Masterclass on AWS has significantly enhanced my skills in building scalable, serverless data pipelines. I have gained hands-on experience with AWS Lambda, S3, and RDS, as well as the ability to visualize complex data architectures using draw.io. These skills are invaluable for building robust and efficient data-driven solutions, further enriching my data science career.
+
+By completing this project, I am now equipped to design, implement, and maintain sophisticated data pipelines that can handle real-time data ingestion, processing, and visualization.
 
