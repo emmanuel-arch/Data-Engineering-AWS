@@ -1,15 +1,13 @@
 # Data Engineering on AWS Masterclass
 
-The primary objective of this Masterclass is to enhance data engineering skills essential for powering an analytics workload on the AWS Cloud platform. For data scientists, understanding the backend processes that drive data-driven decisions is crucial. 
+The primary objective of this Masterclass is to help me enhance my data engineering skills essential for powering an analytics workload on the AWS Cloud platform. This is because for data scientists, understanding the backend processes that drive data-driven decisions is crucial. 
 ### Learning Objectives
 
-1. Designing a real-world data platform on AWS with a focus on scalability and efficiency.
-2. Creating a comprehensive architecture diagram to visualize the entire data pipeline.
-3. Ingesting data from REST APIs using AWS Lambda, a serverless compute service ideal for lightweight data extraction.
-4. Staging data efficiently with AWS Simple Storage Service (S3) to ensure seamless data flow.
-5. Building a simple, yet robust, Postgres data warehouse using AWS RDS to store and query data.
-6. Automating job scheduling with AWS EventBridge to manage data pipeline workflows.
-7. Visualizing data using either open-source tools or AWS QuickSight, transforming raw data into actionable insights.
+1. Creating a comprehensive architecture diagram to visualize the entire data pipeline.
+2. Ingesting data from REST APIs using AWS Lambda, a serverless compute service ideal for lightweight data extraction.
+3. Staging data efficiently with AWS Simple Storage Service (S3) to ensure seamless data flow.
+4. Building a simple, yet robust, Postgres data warehouse using AWS RDS to store and query data.
+5. Visualizing data using open-source tools like draw.io, transforming raw data into actionable insights.
 
 ### Workload Requirements
 
@@ -17,7 +15,6 @@ The primary objective of this Masterclass is to enhance data engineering skills 
 2. **Data Staging**: AWS S3 will be used as the staging area for storing ingested data before further processing.
 3. **Data Warehousing**: Extracted data will be loaded into a Postgres SQL database using AWS Lambda, simulating a data warehouse environment.
 4. **Data Visualization**: The staged and processed data will be visualized to derive insights, using tools such as AWS QuickSight or equivalent.
-5. **Automation**: To ensure efficiency, all stages will be connected and automated using AWS EventBridge, allowing for scheduled execution of the data pipeline.
 
 ---
 
@@ -25,7 +22,7 @@ The primary objective of this Masterclass is to enhance data engineering skills 
 
 ### A. Working with AWS Lambda
 
-In this section, we'll read exchange data from the CoinCap API, leveraging AWS Lambda for serverless computing—a crucial skill in the toolkit of any data scientist looking to build scalable data solutions.
+In this section, I'll read exchange data from the CoinCap API, leveraging AWS Lambda for serverless computing—a crucial skill in the toolkit of any data scientist looking to build scalable data solutions.
 
 1. **AWS Lambda Setup**:
     - Navigate to the AWS Management Console and select the AWS Lambda service. Ensure you are in the ***Ireland Region (eu-west-1)***.
@@ -67,7 +64,7 @@ In this section, we'll read exchange data from the CoinCap API, leveraging AWS L
 
 ---
 
-This project not only deepens your understanding of AWS services but also enhances your data engineering capabilities—skills that are invaluable in your data science career. By the end of this Masterclass, you’ll be equipped to design and implement efficient data pipelines that can process and analyze data in real-time, making you a more versatile and effective data scientist.
+This project not only deepens my understanding of AWS services but also enhances my data engineering capabilities—skills that are invaluable in your data science career. This masterclass made me well-equipped to design and implement efficient data pipelines that can process and analyze data in real-time, making me a more versatile and effective data scientist.
 
 ---
 
