@@ -1,4 +1,4 @@
-Data Engineering Masterclass on AWS
+# Data Engineering Masterclass on AWS
 This project is designed to enhance my data engineering skills by building and deploying a scalable data pipeline on AWS. It focuses on ingesting, staging, storing, and visualizing data efficiently. Understanding how these backend processes work is vital for data scientists, as it enables better insights from analytics workloads on the cloud.
 
 Learning Objectives
