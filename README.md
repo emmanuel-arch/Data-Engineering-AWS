@@ -17,7 +17,7 @@ The following core objectives will guide this project:
 ---
 
 ## Overview of the Data Pipeline
-
+![Data Pipeline Overview](./images/Data-Pipeline.png)
 ### Architecture Overview
 The data pipeline consists of several AWS services working in tandem to extract, stage, store, and process data in near real-time:
 
@@ -96,7 +96,7 @@ After the data is ingested and staged in S3, the next step is to store it in a P
 ---
 
 ## Data Pipeline Visualization Using Draw.io
-
+![Entity Relationship Diagram](./images/Entity-Relationship-Diagram.png)
 ### Step 4: Visualizing the Data Pipeline Architecture
 
 Now that the data has been ingested, staged, and stored, it's time to create a visual representation of the entire pipeline using draw.io. This final step ties everything together and helps you visualize the flow of data from extraction to warehousing.
