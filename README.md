@@ -12,7 +12,7 @@ The following core objectives will guide this project:
 2. **Data Ingestion from APIs**: Utilize AWS Lambda for serverless data extraction from REST APIs, ideal for lightweight compute tasks.
 3. **Efficient Data Staging**: Use AWS Simple Storage Service (S3) as an intermediary for staging ingested data.
 4. **Data Storage in AWS RDS**: Establish a simple Postgres-based data warehouse using AWS RDS to enable efficient querying and storage of data.
-5. **Data Visualization**: Use draw.io to visualize the data pipeline, showcasing how data is processed from source to insights.
+5. **Data Visualization**: Use Lucidchart to visualize the data pipeline, showcasing how data is processed from source to insights.
 
 ---
 
@@ -24,7 +24,7 @@ The data pipeline consists of several AWS services working in tandem to extract,
 1. **AWS Lambda** for executing Python scripts that ingest data from APIs.
 2. **AWS S3** for staging raw data before further processing.
 3. **AWS RDS (Postgres)** to act as the data warehouse for structured storage.
-4. **Draw.io** to visualize the pipeline architecture.
+4. **Lucidchart** to visualize the pipeline architecture.
 
 ---
 
@@ -102,7 +102,7 @@ After the data is ingested and staged in S3, the next step is to store it in a P
 Now that the data has been ingested, staged, and stored, it's time to create a visual representation of the entire pipeline using draw.io. This final step ties everything together and helps you visualize the flow of data from extraction to warehousing.
 
 1. **Architecture Diagram**:
-    - Use [draw.io](https://app.diagrams.net/) to create an end-to-end architecture diagram.
+    - Use [Lucidchart](https://app.diagrams.net/) to create an end-to-end architecture diagram.
     - The diagram should include the following elements:
       - **Rick and Morty API** (data source)
       - **AWS Lambda** (for serverless data ingestion)
